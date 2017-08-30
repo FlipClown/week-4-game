@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset=utf-8>
+	<title>Dragon Ball RPG</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+<div class="modal fade" tabindex="-1" role="dialogue" id="myModal">
+	<div class="modal-dialogue" role="document">
+	<div class="modal-content">
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title text-center">Welcome to the Dragon Ball Multi-Timeline Tournament!</h4>
+	</div>
+	<div class="modal-body">
+		<p class="text-center">Trunks and Goku Black have come from the other timeline to fight in the tournament. Huh!? Freeza is here too!? </p>
+		<p> Choose your favorite Dragon Ball character and an opponent to start. Attack by clicking the "Fight!!" button. Pick your opponents wisely or you might not win the tournament!</p><p> Defeat all of the other fighters in order to come out on top. Be careful, there are no senzu beans!</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary block-center" data-dismiss="modal">Get ready to fight!</button>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div id="wrap">
+<header>
+	<div class="container-fluid">
+	<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+		<h1>Dragon Ball RPG!!</h1>
+	</div>
+	</div>
+	</div>
+</header>
+	<div class="container-fluid gameplaySection">
+	<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+		<h4>Choose your character!</h4>
+	<div class="col-sm-12 col-md-12 col-lg-12">
+	<div id="characterList">
+	</div>
+	</div>
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+		<h4>The opponents!</h4>
+	<div class="col-sm-12 col-md-12 col-lg-12">
+	<div id="enemyList">
+		<p>Opponent List</p>
+	</div>
+	</div>
+	</div>
+	</div>
+<hr>
+	<div class="row">
+	<div class="col-sm-12 col-md-12 col-lg-12 text-center">
+		<h2> The Arena! </h2>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-sm-12 col-md-4 col-lg-4 text-center">
+		<h2> Your Fighter!</h2>
+	<div class="col-sm-12 col-md-12 col-lg-12">
+	<div id="yourCharacter">
+	</div>
+	</div>
+	</div>
+	<div class="col-sm-12 col-md-4 col-md-4 text-center">
+	<button class="btn-danger btn-lg attackBtn text-center" id="attackBtn">Fight!!</button>
+	</div>
+	<div class="col-sm-12 col-md-4 col-md-4 text-center">
+		<h2> Your Opponent!</h2>
+	<div class="col-sm-12 col-md-12 col-lg-12">
+	<div id="yourEnemy">
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-sm-12 col-md-2 col-lg-2"></div>
+	<div class="col-sm-12 col-md-8 col-lg-8 text-center">
+	<div id="attackText"> </div>
+<br>
+	<div id="gameOver">
+	</div>
+	</div>
+	<div class="col-sm-12 col-md-2 col-lg-2"></div>
+	</div>
+	</div>
+	<div id="push"></div>
+	</div>
+	<div id="footer">
+	</div>
+<script type="text/template" id="characterTmpl">
+	<div class="characterContainer characterClick <%= background %>" data-character-index="<%= index %>">
+		<p><%= character.name %></p>
+		<img src="<%= character.visual %>">
+		<p>HP: <%=character.healthPoints %></p>
+	</div>
+</script>
+<script type="text/template" id="attackTmpl">
+	<div class="attackText">
+	You attacked <%= gameObj.currentEnemy ? gameObj.currentEnemy.name ; gameObj.lastOpponent.name %> for <%=
+	gameObj.yourCurrentAttackPower %> damage! <br>
+	<% if (gameObj.currentEnemy) { %>
+		<%= gameObj.currentEnemy.name %> counter attacked damaging your health by <%= gameObj.currentEnemy.counterAttackPower
+		%>.
+	<% } %>
+	</div>
+</script>
+<script type="text/template" id="winTmpl">
+	<div class="attackText">
+		You beat <%= lastOpponent.name %>, choose your opponent for the next match!
+	</div>
+</script>
+<script type="text/template" id="lossTmpl">
+	<div class="attackText">
+		<$= gameObj.currentEnemy.name %> knocked you out! Game Over!!
+	</div>
+</script>
+<script type="text/template" id="fighterTmpl">
+	<div class="attackText">
+		You beat <% lastOpponent.name %>! You won the Tenkaichi Budokai!
+<br>
+		You're the strongest in the universe!
+	</div>
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>

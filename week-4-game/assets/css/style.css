@@ -1,0 +1,79 @@
+body {
+	font-family: "Bangers", cursive;
+	color: black;
+}
+
+.modal-body { 
+color: black; 
+
+}
+
+.modal-header {
+	color: red;
+}
+
+
+
+#wrap {
+	min-height: 100%;
+	height: auto ;
+	height: 100%;
+	margin: 0 auto -60px;
+}
+
+#push, #footer {
+	height: 60px;
+}
+
+.characterContainer {
+	display: inline-block;
+	width: 200px;
+	border: solid 4px black;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	border-radius: 7px;
+
+}
+
+.bg-red {
+	background-color: red;
+}
+
+.bg-white {
+	background-color: green;
+}
+
+.bg-black {
+	background-color: grey;
+}
+
+.enemyContainer {
+	display: inline-block;
+	width: 200px;
+	border: solid 4px;
+	margin-bottom: 10px;
+	border-radius: 7px;
+}
+
+.characterContainer p, .enemyContainer p {
+	color: black;
+	text-align: center;
+
+}
+
+img {
+	height:100px;
+	width:150px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.attackBtn{
+	vertical-align: middle;
+	margin-top: 80px;
+}
+
+#attackText { 
+font-size: 25px; }
+
